@@ -17,7 +17,7 @@ func main() {
 		fmt.Fprintf(w, "Host: "+r.Host+"\n")
 	})
 
-	// Puns endpoint.
+	// Puns endpoint
 	http.HandleFunc("/pun", func(w http.ResponseWriter, r *http.Request) {
 		rand.Seed(time.Now().Unix())
 		jokes := []string{
@@ -32,7 +32,10 @@ func main() {
 			"Don't trust atoms. They make up everything.",
 			"Q: Why can't you hear a pterodactyl go to the bathroom?\nA: Because the P is silent.",
 		}
+
+		// pick a random pun index
 		n := rand.Int() % len(jokes)
+
 		fmt.Fprintf(w, jokes[n])
 	})
 
