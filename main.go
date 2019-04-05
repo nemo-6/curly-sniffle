@@ -17,6 +17,13 @@ func main() {
 		fmt.Fprintf(w, "Host: "+r.Host+"\n")
 	})
 
+	// Teapot IOT endpoint
+	http.HandleFunc("/teapot", func(w http.ResponseWriter, r *http.Request) {
+		response := []byte("I'm pretending to be a teapot. For the time being. Sorry for any inconvenience.")
+		w.WriteHeader(418) // I'm a teapot
+		w.Write(response)
+	})
+
 	// Puns endpoint
 	http.HandleFunc("/pun", func(w http.ResponseWriter, r *http.Request) {
 		rand.Seed(time.Now().Unix())
