@@ -9,9 +9,10 @@ import (
 )
 
 func main() {
-
 	// Test endpoint
 	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Responding in /test")
+		fmt.Println("remote: " + r.RemoteAddr)
 		fmt.Fprintf(w, "Method: "+r.Method+"\n")
 		fmt.Fprintf(w, "URL: "+r.URL.Host+"\n")
 		fmt.Fprintf(w, "Host: "+r.Host+"\n")
@@ -19,13 +20,15 @@ func main() {
 
 	// Teapot IOT endpoint
 	http.HandleFunc("/teapot", func(w http.ResponseWriter, r *http.Request) {
-		response := []byte("I'm pretending to be a teapot. For the time being. Sorry for any inconvenience.")
-		w.WriteHeader(418) // I'm a teapot
+		fmt.Println("Responding in /teapot")
+		response := []byte("hi I'm pretending to be a teapot. For the time being. Sorry for any inconvenience.")
+		w.WriteHeader(418) // "I'm a teapot"
 		w.Write(response)
 	})
 
 	// Puns endpoint
 	http.HandleFunc("/pun", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Responding in /pun")
 		rand.Seed(time.Now().Unix())
 		jokes := []string{
 			"Q: Why did the scarecrow win an award?\nA: Because he was outstanding in his field",
@@ -47,5 +50,6 @@ func main() {
 	})
 
 	// Start serving
+	go print("Started serving port 2983...")
 	log.Fatal(http.ListenAndServe(":2983", nil))
 }
