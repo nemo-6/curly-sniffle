@@ -12,7 +12,7 @@ Home is where your api runs.
 ---
 
 Api Map! 
-```json
+```javascript
 {
   {
     url:"/pun",
