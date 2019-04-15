@@ -12,7 +12,7 @@ Home is where your api runs.
 ---
 
 Api Map! 
-{
+```json{
   {
     url:"/pun",
     method:"GET",
@@ -26,3 +26,4 @@ Api Map!
     }
   } 
 }
+```
